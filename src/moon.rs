@@ -1,5 +1,23 @@
 use std::fmt;
 
+/// The moons are split into 28 icons, to correspond neatly with the 28 day moon cycle. There is a
+/// primary set and alternate set. The primary set is meant to be interpreted as: where there are
+/// pixels, that is the illuminated part of the moon. The alternate set is meant to be interpreted
+/// as: where there are pixels, that is the shadowed part of the moon.
+///
+/// *From
+/// [https://erikflowers.github.io/weather-icons/](https://erikflowers.github.io/weather-icons/)*
+pub enum Color {
+    /// '\u{f095}', i.e. wi-moon-new
+    ///
+    /// A full moon is filled with pixels.
+    Dark,
+    /// '\u{f0eb}', i.e. wi-moon-alt-new
+    ///
+    /// A full moon has no pixels.
+    Light,
+}
+
 pub enum Moon {
     MoonNew,
     MoonWaxingCrescent1,
@@ -185,12 +203,14 @@ impl Moon {
     }
 }
 
-pub fn phase(phase: f64) -> char {
+pub fn phase(color: Color, phase: f64) -> char {
     use std::char;
-    // '\u{f095}', i.e. wi-moon-new
-    let new_moon = 61589u32;
-    // '\u{f0eb}', i.e. wi-moon-alt-new
-    //let new_moon = 61648u32;
+    let new_moon = match color {
+        // '\u{f095}', i.e. wi-moon-new
+        Color::Dark => 61589u32,
+        // '\u{f0eb}', i.e. wi-moon-alt-new
+        Color::Light => 61648u32,
+    };
     if phase > 1f64 || phase < 0f64 {
         panic!("Moon phase out of bounds");
     }
