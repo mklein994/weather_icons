@@ -8,14 +8,14 @@ use std::fmt;
 /// *From
 /// [https://erikflowers.github.io/weather-icons/](https://erikflowers.github.io/weather-icons/)*
 pub enum Color {
-    /// '\u{f095}', i.e. wi-moon-new
-    ///
-    /// A full moon is filled with pixels.
-    Dark,
     /// '\u{f0eb}', i.e. wi-moon-alt-new
     ///
     /// A full moon has no pixels.
-    Light,
+    Alt,
+    /// '\u{f095}', i.e. wi-moon-new
+    ///
+    /// A full moon is filled with pixels.
+    Primary,
 }
 
 pub enum Moon {
@@ -207,9 +207,9 @@ pub fn phase(color: Color, phase: f64) -> char {
     use std::char;
     let new_moon = match color {
         // '\u{f095}', i.e. wi-moon-new
-        Color::Dark => 61589u32,
+        Color::Primary => 61589u32,
         // '\u{f0eb}', i.e. wi-moon-alt-new
-        Color::Light => 61648u32,
+        Color::Alt => 61648u32,
     };
     if phase > 1f64 || phase < 0f64 {
         panic!("Moon phase out of bounds");
