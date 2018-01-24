@@ -202,13 +202,13 @@ impl Moon {
         }
     }
 
-    pub fn phase(theme: Theme, phase: f64) -> char {
+    pub fn phase(theme: &Theme, phase: f64) -> char {
         use std::char;
-        let new_moon = match theme {
+        let new_moon = match *theme {
             // '\u{f095}', i.e. wi-moon-new
-            Theme::Primary => 61589u32,
+            Theme::Primary => 61_589u32,
             // '\u{f0eb}', i.e. wi-moon-alt-new
-            Theme::Alt => 61648u32,
+            Theme::Alt => 61_648u32,
         };
         if phase > 1f64 || phase < 0f64 {
             panic!("Moon phase out of bounds");
