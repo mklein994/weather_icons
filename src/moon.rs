@@ -7,7 +7,7 @@ use std::fmt;
 ///
 /// *From
 /// [https://erikflowers.github.io/weather-icons/](https://erikflowers.github.io/weather-icons/)*
-pub enum Color {
+pub enum Theme {
     /// '\u{f0eb}', i.e. wi-moon-alt-new
     ///
     /// A full moon has no pixels.
@@ -201,27 +201,27 @@ impl Moon {
             MoonAltWaningCrescent6 => "wi-moon-alt-waning-crescent-6",
         }
     }
-}
 
-pub fn phase(color: Color, phase: f64) -> char {
-    use std::char;
-    let new_moon = match color {
-        // '\u{f095}', i.e. wi-moon-new
-        Color::Primary => 61589u32,
-        // '\u{f0eb}', i.e. wi-moon-alt-new
-        Color::Alt => 61648u32,
-    };
-    if phase > 1f64 || phase < 0f64 {
-        panic!("Moon phase out of bounds");
+    pub fn phase(theme: Theme, phase: f64) -> char {
+        use std::char;
+        let new_moon = match theme {
+            // '\u{f095}', i.e. wi-moon-new
+            Theme::Primary => 61589u32,
+            // '\u{f0eb}', i.e. wi-moon-alt-new
+            Theme::Alt => 61648u32,
+        };
+        if phase > 1f64 || phase < 0f64 {
+            panic!("Moon phase out of bounds");
+        }
+
+        let lunar_number = match (phase * 28f64).round() as u32 {
+            n @ 0...27 => n,
+            28 => 0,
+            _ => panic!("Moon phase out of bounds"),
+        };
+
+        char::from_u32(new_moon + lunar_number).unwrap()
     }
-
-    let lunar_number = match (phase * 28f64).round() as u32 {
-        n @ 0...27 => n,
-        28 => 0,
-        _ => panic!("Moon phase out of bounds"),
-    };
-
-    char::from_u32(new_moon + lunar_number).unwrap()
 }
 
 impl fmt::Display for Moon {
