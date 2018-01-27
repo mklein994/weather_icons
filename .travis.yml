@@ -7,8 +7,5 @@ matrix:
   allow_failures:
     - rust: nightly
 cache: cargo
-script:
-  - cargo build --verbose --all
-  - cargo test --verbose --all
 notifications:
   email: false
