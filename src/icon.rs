@@ -262,3 +262,9 @@ impl fmt::Display for Icon {
         )
     }
 }
+
+impl Default for Icon {
+    fn default() -> Self {
+        Icon::Na
+    }
+}
