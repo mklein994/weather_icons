@@ -1,3 +1,4 @@
+use super::dripicon::DripIcon;
 use std::fmt;
 
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -266,5 +267,82 @@ impl fmt::Display for Icon {
 impl Default for Icon {
     fn default() -> Self {
         Icon::Na
+    }
+}
+
+impl From<DripIcon> for Icon {
+    fn from(icon: DripIcon) -> Self {
+        use Icon::*;
+        match icon {
+            DripIcon::Cloud => Cloud,
+            DripIcon::CloudDrizzle => Showers,
+            DripIcon::CloudDrizzleLightning => StormShowers,
+            DripIcon::CloudDrizzleLightningMoon => NightAltStormShowers,
+            DripIcon::CloudDrizzleLightningSun => DayStormShowers,
+            DripIcon::CloudDrizzleLightningSunAlt => NightStormShowers,
+            DripIcon::CloudDrizzleMoon => NightAltShowers,
+            DripIcon::CloudDrizzleSun => DayShowers,
+            DripIcon::CloudDrizzleSunAlt => NightShowers,
+            DripIcon::CloudFog => Fog,
+            DripIcon::CloudFogMoon => NightFog,
+            DripIcon::CloudFogSun => DayFog,
+            DripIcon::CloudHail => Hail,
+            DripIcon::CloudHailMoon => NightAltHail,
+            DripIcon::CloudHailSun => DayHail,
+            DripIcon::CloudHailSunAlt => NightHail,
+            DripIcon::CloudLightningMoon => NightAltLightning,
+            DripIcon::CloudLightningSun => DayLightning,
+            DripIcon::CloudLightningSunAlt => NightLightning,
+            DripIcon::CloudMoon => NightAltCloudy,
+            DripIcon::CloudRain => Rain,
+            DripIcon::CloudRainAlt => Sprinkle,
+            DripIcon::CloudRainAltMoon => NightAltSprinkle,
+            DripIcon::CloudRainAltSun => DaySprinkle,
+            DripIcon::CloudRainAltSunAlt => NightSprinkle,
+            DripIcon::CloudRainLightning => Thunderstorm,
+            DripIcon::CloudRainLightningMoon => NightAltThunderstorm,
+            DripIcon::CloudRainLightningSun => DayThunderstorm,
+            DripIcon::CloudRainLightningSunAlt => NightThunderstorm,
+            DripIcon::CloudRainMoon => NightAltRain,
+            DripIcon::CloudRainSun => DayRain,
+            DripIcon::CloudRainSunAlt => NightRain,
+            DripIcon::CloudSnow => Snow,
+            DripIcon::CloudSnowMoon => NightAltSnow,
+            DripIcon::CloudSnowSun => DaySnow,
+            DripIcon::CloudSnowSunAlt => NightSnow,
+            DripIcon::CloudSun => DayCloudy,
+            DripIcon::CloudSunAlt => NightCloudy,
+            DripIcon::CloudWind => CloudyGusts,
+            DripIcon::CloudWindAlt => CloudyWindy,
+            DripIcon::CloudWindAltMoon => NightAltCloudyWindy,
+            DripIcon::CloudWindAltSun => DayCloudyWindy,
+            DripIcon::CloudWindAltSunAlt => NightCloudyWindy,
+            DripIcon::CloudWindMoon => NightAltCloudyGusts,
+            DripIcon::CloudWindSunAlt => NightCloudyGusts,
+            DripIcon::Clouds => Cloudy,
+            DripIcon::CompassEast => DirectionRight,
+            DripIcon::CompassNorth => DirectionUp,
+            DripIcon::CompassSouth => DirectionDown,
+            DripIcon::CompassWest => DirectionLeft,
+            DripIcon::DegreesCelsius => Celsius,
+            DripIcon::DegreesFahrenheit => Fahrenheit,
+            DripIcon::Flag => SmallCraftAdvisory,
+            DripIcon::Fog => Windy,
+            DripIcon::Lightning => Lightning,
+            DripIcon::Raindrop => Raindrop,
+            DripIcon::Snow => SnowflakeCold,
+            DripIcon::Sun => DaySunny,
+            DripIcon::SunEclipse => SolarEclipse,
+            DripIcon::SunLow => HorizonAlt,
+            DripIcon::SunLower => Horizon,
+            DripIcon::SunRise => Sunrise,
+            DripIcon::SunSet => Sunset,
+            DripIcon::Thermometer100 => Thermometer,
+            DripIcon::Tornado => Tornado,
+            DripIcon::Umbrella => Umbrella,
+            DripIcon::Wet => Raindrops,
+            DripIcon::Wind => StrongWind,
+            _ => unimplemented!(),
+        }
     }
 }
