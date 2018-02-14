@@ -58,7 +58,7 @@ impl MoonBuilder {
         if phase > 1. || phase < 0. {
             return Err(OutOfBounds);
         }
-        self.phase = (phase * MOON_PHASES) as u32;
+        self.phase = (phase * MOON_PHASES).round() as u32;
         Ok(self)
     }
 
