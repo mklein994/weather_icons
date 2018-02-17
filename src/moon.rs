@@ -84,7 +84,7 @@ pub struct OutOfBounds;
 
 impl fmt::Display for OutOfBounds {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Out of bounds")
+        write!(f, "moon phase is out of bounds")
     }
 }
 
