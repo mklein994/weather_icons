@@ -131,7 +131,7 @@ pub enum DripIcon {
     DegreesFahrenheit = 0x21,
     /// "
     Drizzle = 0x22,
-    /// #
+    /// \#
     Flag = 0x23,
     /// $
     Fog = 0x24,
@@ -145,13 +145,13 @@ pub enum DripIcon {
     Moon50 = 0x28,
     /// )
     Moon75 = 0x29,
-    /// *
+    /// \*
     Moon100 = 0x2a,
-    /// +
+    /// \+
     MoonStars = 0x2b,
     /// ,
     Rain = 0x2c,
-    /// -
+    /// \-
     Raindrop = 0x2d,
     /// .
     Snow = 0x2e,
@@ -163,7 +163,7 @@ pub enum DripIcon {
     SunLow = 0x3b,
     /// <
     SunLower = 0x3c,
-    /// =
+    /// \=
     SunRise = 0x3d,
     /// >
     SunSet = 0x3e,
