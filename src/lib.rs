@@ -6,7 +6,7 @@ mod condition;
 pub use condition::Condition;
 pub use dripicon::DripIcon;
 pub use icon::Icon;
-pub use moon::{Moon, Style};
+pub use moon::{Moon, OutOfBounds, Style};
 
 #[derive(Copy, Clone, Debug, PartialEq)]
 pub enum Time {
