@@ -1,4 +1,5 @@
 use super::Icon;
+use std::char;
 use std::fmt;
 
 const MOON_PHASES: f64 = 28.;
@@ -29,46 +30,52 @@ impl Default for Style {
 }
 
 #[derive(Clone, Copy, Debug, Default)]
-pub struct Moon(u32);
-
-impl fmt::Display for Moon {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "{}",
-            ::std::char::from_u32(self.0).expect("Failed to convert moon phase into char")
-        )
-    }
+pub struct Moon {
+    pub phase: u32,
+    pub style: Style,
+    icon: char,
 }
 
 impl Moon {
-    pub fn new() -> MoonBuilder {
-        Default::default()
+    pub fn new(phase: f64, style: &Style) -> Result<Self, OutOfBounds> {
+        let phase: u32 = Self::moon_phase(phase)?;
+
+        let icon = Self::moon_icon(phase, style);
+
+        Ok(Self {
+            phase,
+            style: *style,
+            icon,
+        })
     }
-}
 
-#[derive(Clone, Copy, Debug, Default)]
-pub struct MoonBuilder {
-    phase: u32,
-    style: Style,
-}
-
-impl MoonBuilder {
-    pub fn phase(&mut self, phase: f64) -> Result<&mut Self, OutOfBounds> {
+    fn moon_phase(phase: f64) -> Result<u32, OutOfBounds> {
         if phase > 1. || phase < 0. {
-            return Err(OutOfBounds);
+            Err(OutOfBounds)
+        } else {
+            Ok(((phase * MOON_PHASES).round() % MOON_PHASES) as u32)
         }
-        self.phase = (phase * MOON_PHASES).round() as u32;
-        Ok(self)
     }
 
-    pub fn style(&mut self, style: Style) -> &mut Self {
-        self.style = style;
-        self
-    }
+    fn moon_icon(phase: u32, style: &Style) -> char {
+        let icon: u32 = match *style {
+            Style::Primary => *style as u32 + phase,
+            Style::Alt => {
+                if phase == 0 {
+                    Style::Alt as u32
+                } else {
+                    Icon::MoonAltWaxingCrescent1 as u32 - 1 + phase
+                }
+            }
+        };
 
-    pub fn build(self) -> Moon {
-        Moon(self.style as u32 + self.phase)
+        char::from_u32(icon).expect("couldn't convert moon phase to char")
+    }
+}
+
+impl fmt::Display for Moon {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.icon)
     }
 }
 
@@ -641,17 +648,26 @@ mod tests {
             let expected_primary = i.2;
             let expected_alt = i.3;
 
-            let actual = Moon::new().phase(i.0).unwrap().build();
+            let actual_primary = Moon::new(i.0, &Style::Primary).unwrap();
+            let actual_alt = Moon::new(i.0, &Style::Alt).unwrap();
 
             assert_eq!(
-                expected_primary as u32, actual.0,
-                "Expected primary: \\u{{{:x}}} {:?}, actual: \\u{{{:x}}} {:?}",
-                expected_primary as u32, expected_primary, actual.0, actual
+                expected_primary as u32,
+                actual_primary.icon as u32,
+                "Expected primary: {:x} {:?}, actual: {} {:?}",
+                expected_primary as u32,
+                expected_primary,
+                actual_primary.icon.escape_unicode(),
+                actual_primary
             );
             assert_eq!(
-                expected_alt as u32, actual.0,
-                "Expected alt: \\u{{{:x}}} {:?}, actual: \\u{{{:x}}} {:?}",
-                expected_alt as u32, expected_alt, actual.0, actual
+                expected_alt as u32,
+                actual_alt.icon as u32,
+                "Expected alt: {:x} {:?}, actual: {} {:?}",
+                expected_alt as u32,
+                expected_alt,
+                actual_alt.icon.escape_unicode(),
+                actual_alt
             );
         }
     }
@@ -659,24 +675,24 @@ mod tests {
     #[test]
     #[should_panic]
     fn lunar_number_less_than_0_primary() {
-        Moon::new().style(Style::Primary).phase(-1f64).unwrap();
+        Moon::new(-1f64, &Style::Primary).unwrap();
     }
 
     #[test]
     #[should_panic]
     fn lunar_number_less_than_0_alt() {
-        Moon::new().style(Style::Alt).phase(-1f64).unwrap();
+        Moon::new(-1f64, &Style::Alt).unwrap();
     }
 
     #[test]
     #[should_panic]
     fn lunar_number_greater_than_1_primary() {
-        Moon::new().style(Style::Primary).phase(2f64).unwrap();
+        Moon::new(2f64, &Style::Primary).unwrap();
     }
 
     #[test]
     #[should_panic]
     fn lunar_number_greater_than_1_alt() {
-        Moon::new().style(Style::Alt).phase(2f64).unwrap();
+        Moon::new(2f64, &Style::Alt).unwrap();
     }
 }
