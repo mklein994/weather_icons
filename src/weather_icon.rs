@@ -2,7 +2,7 @@ use super::dripicon::DripIcon;
 use std::fmt;
 
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum Icon {
+pub enum WeatherIcon {
     DaySunny = 0xf00d,
     DayCloudy = 0xf002,
     DayCloudyGusts = 0xf000,
@@ -254,7 +254,7 @@ pub enum Icon {
     WindBeaufort12 = 0xf0c3,
 }
 
-impl fmt::Display for Icon {
+impl fmt::Display for WeatherIcon {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
@@ -264,15 +264,15 @@ impl fmt::Display for Icon {
     }
 }
 
-impl Default for Icon {
+impl Default for WeatherIcon {
     fn default() -> Self {
-        Icon::Na
+        WeatherIcon::Na
     }
 }
 
-impl From<DripIcon> for Icon {
+impl From<DripIcon> for WeatherIcon {
     fn from(icon: DripIcon) -> Self {
-        use Icon::*;
+        use WeatherIcon::*;
         match icon {
             DripIcon::Cloud => Cloud,
             DripIcon::CloudDrizzle => Showers,

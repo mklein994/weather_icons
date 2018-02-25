@@ -1,34 +1,34 @@
-use super::{Icon, Time};
+use super::{WeatherIcon, Time};
 
 /// `Neutral`, `Day`, `Night`, `NightAlt`
-type IconSet = (Option<Icon>, Option<Icon>, Option<Icon>, Option<Icon>);
+type IconSet = (Option<WeatherIcon>, Option<WeatherIcon>, Option<WeatherIcon>, Option<WeatherIcon>);
 
 #[cfg_attr(rustfmt, rustfmt_skip)]
 static WEATHER_ICONS: &'static [IconSet] = &[
-    (Some(Icon::CloudyWindy),   Some(Icon::DayCloudyWindy),       Some(Icon::NightCloudyWindy),       Some(Icon::NightAltCloudyWindy)),
-    (Some(Icon::Cloudy),        Some(Icon::DayCloudy),            Some(Icon::NightCloudy),            Some(Icon::NightAltCloudy)),
-    (Some(Icon::Fog),           Some(Icon::DayFog),               Some(Icon::NightFog),               None),
-    (Some(Icon::Hail),          Some(Icon::DayHail),              Some(Icon::NightHail),              Some(Icon::NightAltHail)),
-    (Some(Icon::Lightning),     Some(Icon::DayLightning),         Some(Icon::NightLightning),         Some(Icon::NightAltLightning)),
-    (Some(Icon::RainMix),       Some(Icon::DayRainMix),           Some(Icon::NightRainMix),           Some(Icon::NightAltRainMix)),
-    (Some(Icon::RainWind),      Some(Icon::DayRainWind),          Some(Icon::NightRainWind),          Some(Icon::NightAltRainWind)),
-    (Some(Icon::Rain),          Some(Icon::DayRain),              Some(Icon::NightRain),              Some(Icon::NightAltRain)),
-    (Some(Icon::Showers),       Some(Icon::DayShowers),           Some(Icon::NightShowers),           Some(Icon::NightAltShowers)),
-    (Some(Icon::Snow),          Some(Icon::DaySnow),              Some(Icon::NightSnow),              Some(Icon::NightAltSnow)),
-    (Some(Icon::Sprinkle),      Some(Icon::DaySprinkle),          Some(Icon::NightSprinkle),          Some(Icon::NightAltSprinkle)),
-    (None,                      Some(Icon::DaySunnyOvercast),     Some(Icon::NightPartlyCloudy),      Some(Icon::NightAltPartlyCloudy)),
-    (None,                      Some(Icon::DaySunny),             Some(Icon::NightClear),             None),
-    (Some(Icon::StormShowers),  Some(Icon::DayStormShowers),      Some(Icon::NightStormShowers),      Some(Icon::NightAltStormShowers)),
-    (Some(Icon::Thunderstorm),  Some(Icon::DayThunderstorm),      Some(Icon::NightThunderstorm),      Some(Icon::NightAltThunderstorm)),
-    (Some(Icon::SnowWind),      Some(Icon::DaySnowWind),          Some(Icon::NightSnowWind),          Some(Icon::NightAltSnowWind)),
-    (None,                      Some(Icon::DaySleetStorm),        Some(Icon::NightSleetStorm),        Some(Icon::NightAltSleetStorm)),
-    (None,                      Some(Icon::DaySnowThunderstorm),  Some(Icon::NightSnowThunderstorm),  Some(Icon::NightAltSnowThunderstorm)),
-    (None,                      Some(Icon::DayCloudyHigh),        Some(Icon::NightCloudyHigh),        Some(Icon::NightAltCloudyHigh)),
-    //(Some(Icon::Windy),         Some(Icon::DayWindy),             None,                               None),
-    (Some(Icon::Sleet),         Some(Icon::DaySleet),             Some(Icon::NightSleet),             Some(Icon::NightAltSleet)),
-    //(None,                      Some(Icon::DayHaze),              None,                               None),
-    //(None,                      Some(Icon::DayLightWind),         None,                               None),
-    //(None,                      None,                             Some(Icon::NightCloudyGusts),       None),
+    (Some(WeatherIcon::CloudyWindy),   Some(WeatherIcon::DayCloudyWindy),       Some(WeatherIcon::NightCloudyWindy),       Some(WeatherIcon::NightAltCloudyWindy)),
+    (Some(WeatherIcon::Cloudy),        Some(WeatherIcon::DayCloudy),            Some(WeatherIcon::NightCloudy),            Some(WeatherIcon::NightAltCloudy)),
+    (Some(WeatherIcon::Fog),           Some(WeatherIcon::DayFog),               Some(WeatherIcon::NightFog),               None),
+    (Some(WeatherIcon::Hail),          Some(WeatherIcon::DayHail),              Some(WeatherIcon::NightHail),              Some(WeatherIcon::NightAltHail)),
+    (Some(WeatherIcon::Lightning),     Some(WeatherIcon::DayLightning),         Some(WeatherIcon::NightLightning),         Some(WeatherIcon::NightAltLightning)),
+    (Some(WeatherIcon::RainMix),       Some(WeatherIcon::DayRainMix),           Some(WeatherIcon::NightRainMix),           Some(WeatherIcon::NightAltRainMix)),
+    (Some(WeatherIcon::RainWind),      Some(WeatherIcon::DayRainWind),          Some(WeatherIcon::NightRainWind),          Some(WeatherIcon::NightAltRainWind)),
+    (Some(WeatherIcon::Rain),          Some(WeatherIcon::DayRain),              Some(WeatherIcon::NightRain),              Some(WeatherIcon::NightAltRain)),
+    (Some(WeatherIcon::Showers),       Some(WeatherIcon::DayShowers),           Some(WeatherIcon::NightShowers),           Some(WeatherIcon::NightAltShowers)),
+    (Some(WeatherIcon::Snow),          Some(WeatherIcon::DaySnow),              Some(WeatherIcon::NightSnow),              Some(WeatherIcon::NightAltSnow)),
+    (Some(WeatherIcon::Sprinkle),      Some(WeatherIcon::DaySprinkle),          Some(WeatherIcon::NightSprinkle),          Some(WeatherIcon::NightAltSprinkle)),
+    (None,                      Some(WeatherIcon::DaySunnyOvercast),     Some(WeatherIcon::NightPartlyCloudy),      Some(WeatherIcon::NightAltPartlyCloudy)),
+    (None,                      Some(WeatherIcon::DaySunny),             Some(WeatherIcon::NightClear),             None),
+    (Some(WeatherIcon::StormShowers),  Some(WeatherIcon::DayStormShowers),      Some(WeatherIcon::NightStormShowers),      Some(WeatherIcon::NightAltStormShowers)),
+    (Some(WeatherIcon::Thunderstorm),  Some(WeatherIcon::DayThunderstorm),      Some(WeatherIcon::NightThunderstorm),      Some(WeatherIcon::NightAltThunderstorm)),
+    (Some(WeatherIcon::SnowWind),      Some(WeatherIcon::DaySnowWind),          Some(WeatherIcon::NightSnowWind),          Some(WeatherIcon::NightAltSnowWind)),
+    (None,                      Some(WeatherIcon::DaySleetStorm),        Some(WeatherIcon::NightSleetStorm),        Some(WeatherIcon::NightAltSleetStorm)),
+    (None,                      Some(WeatherIcon::DaySnowThunderstorm),  Some(WeatherIcon::NightSnowThunderstorm),  Some(WeatherIcon::NightAltSnowThunderstorm)),
+    (None,                      Some(WeatherIcon::DayCloudyHigh),        Some(WeatherIcon::NightCloudyHigh),        Some(WeatherIcon::NightAltCloudyHigh)),
+    //(Some(WeatherIcon::Windy),         Some(WeatherIcon::DayWindy),             None,                               None),
+    (Some(WeatherIcon::Sleet),         Some(WeatherIcon::DaySleet),             Some(WeatherIcon::NightSleet),             Some(WeatherIcon::NightAltSleet)),
+    //(None,                      Some(WeatherIcon::DayHaze),              None,                               None),
+    //(None,                      Some(WeatherIcon::DayLightWind),         None,                               None),
+    //(None,                      None,                             Some(WeatherIcon::NightCloudyGusts),       None),
 ];
 
 #[derive(Clone, Copy, Debug)]
@@ -60,7 +60,7 @@ pub enum Condition {
 }
 
 impl Condition {
-    pub fn variant(&self, time: Time) -> Option<Icon> {
+    pub fn variant(&self, time: Time) -> Option<WeatherIcon> {
         use Time::*;
         match time {
             Neutral => WEATHER_ICONS[*self as usize].0,
@@ -70,19 +70,19 @@ impl Condition {
         }
     }
 
-    pub fn neutral(&self) -> Option<Icon> {
+    pub fn neutral(&self) -> Option<WeatherIcon> {
         WEATHER_ICONS[*self as usize].0
     }
 
-    pub fn day(&self) -> Option<Icon> {
+    pub fn day(&self) -> Option<WeatherIcon> {
         WEATHER_ICONS[*self as usize].1
     }
 
-    pub fn night(&self) -> Option<Icon> {
+    pub fn night(&self) -> Option<WeatherIcon> {
         WEATHER_ICONS[*self as usize].2
     }
 
-    pub fn night_alt(&self) -> Option<Icon> {
+    pub fn night_alt(&self) -> Option<WeatherIcon> {
         WEATHER_ICONS[*self as usize].3
     }
 }

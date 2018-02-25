@@ -4,7 +4,7 @@ use weather_icons::Condition;
 
 #[test]
 fn check_icon_condition_mapping_day() {
-    use weather_icons::Icon::*;
+    use weather_icons::WeatherIcon::*;
 
     assert_eq!(Condition::CloudyWindy.day(), Some(DayCloudyWindy));
     assert_eq!(Condition::Cloudy.day(), Some(DayCloudy));
@@ -34,7 +34,7 @@ fn check_icon_condition_mapping_day() {
 
 #[test]
 fn check_icon_condition_mapping_night() {
-    use weather_icons::Icon::*;
+    use weather_icons::WeatherIcon::*;
 
     assert_eq!(Condition::CloudyWindy.night(), Some(NightCloudyWindy));
     assert_eq!(Condition::Cloudy.night(), Some(NightCloudy));
