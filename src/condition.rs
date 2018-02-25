@@ -1,7 +1,12 @@
-use super::{WeatherIcon, Time};
+use super::{Time, WeatherIcon};
 
 /// `Neutral`, `Day`, `Night`, `NightAlt`
-type IconSet = (Option<WeatherIcon>, Option<WeatherIcon>, Option<WeatherIcon>, Option<WeatherIcon>);
+type IconSet = (
+    Option<WeatherIcon>,
+    Option<WeatherIcon>,
+    Option<WeatherIcon>,
+    Option<WeatherIcon>,
+);
 
 #[cfg_attr(rustfmt, rustfmt_skip)]
 static WEATHER_ICONS: &'static [IconSet] = &[
