@@ -1,10 +1,13 @@
 use super::{Time, WeatherIcon};
 
-/// `Neutral`, `Day`, `Night`, `NightAlt`
 type IconSet = (
+    // Neutral
     Option<WeatherIcon>,
+    // Day
     Option<WeatherIcon>,
+    // Night
     Option<WeatherIcon>,
+    // NightAlt
     Option<WeatherIcon>,
 );
 
