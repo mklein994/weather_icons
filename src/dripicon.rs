@@ -193,6 +193,12 @@ impl fmt::Display for DripIcon {
     }
 }
 
+impl Default for DripIcon {
+    fn default() -> Self {
+        DripIcon::Cloud
+    }
+}
+
 impl From<WeatherIcon> for DripIcon {
     fn from(icon: WeatherIcon) -> Self {
         use DripIcon::*;
