@@ -68,30 +68,30 @@ pub enum Condition {
 }
 
 impl Condition {
-    pub fn variant(&self, time: Time) -> Option<WeatherIcon> {
+    pub fn variant(self, time: Time) -> Option<WeatherIcon> {
         use crate::Time::*;
         match time {
-            Neutral => WEATHER_ICONS[*self as usize].0,
-            Day => WEATHER_ICONS[*self as usize].1,
-            Night => WEATHER_ICONS[*self as usize].2,
-            NightAlt => WEATHER_ICONS[*self as usize].3,
+            Neutral => WEATHER_ICONS[self as usize].0,
+            Day => WEATHER_ICONS[self as usize].1,
+            Night => WEATHER_ICONS[self as usize].2,
+            NightAlt => WEATHER_ICONS[self as usize].3,
         }
     }
 
-    pub fn neutral(&self) -> Option<WeatherIcon> {
-        WEATHER_ICONS[*self as usize].0
+    pub fn neutral(self) -> Option<WeatherIcon> {
+        WEATHER_ICONS[self as usize].0
     }
 
-    pub fn day(&self) -> Option<WeatherIcon> {
-        WEATHER_ICONS[*self as usize].1
+    pub fn day(self) -> Option<WeatherIcon> {
+        WEATHER_ICONS[self as usize].1
     }
 
-    pub fn night(&self) -> Option<WeatherIcon> {
-        WEATHER_ICONS[*self as usize].2
+    pub fn night(self) -> Option<WeatherIcon> {
+        WEATHER_ICONS[self as usize].2
     }
 
-    pub fn night_alt(&self) -> Option<WeatherIcon> {
-        WEATHER_ICONS[*self as usize].3
+    pub fn night_alt(self) -> Option<WeatherIcon> {
+        WEATHER_ICONS[self as usize].3
     }
 }
 

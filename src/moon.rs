@@ -37,16 +37,12 @@ pub struct Moon {
 }
 
 impl Moon {
-    pub fn new(phase: f64, style: &Style) -> Result<Self, OutOfBounds> {
+    pub fn new(phase: f64, style: Style) -> Result<Self, OutOfBounds> {
         let phase: u32 = Self::moon_phase(phase)?;
 
         let icon = Self::moon_icon(phase, style);
 
-        Ok(Self {
-            phase,
-            style: *style,
-            icon,
-        })
+        Ok(Self { phase, style, icon })
     }
 
     fn moon_phase(phase: f64) -> Result<u32, OutOfBounds> {
@@ -57,9 +53,9 @@ impl Moon {
         }
     }
 
-    fn moon_icon(phase: u32, style: &Style) -> char {
-        let icon: u32 = match *style {
-            Style::Primary => *style as u32 + phase,
+    fn moon_icon(phase: u32, style: Style) -> char {
+        let icon: u32 = match style {
+            Style::Primary => style as u32 + phase,
             Style::Alt => {
                 if phase == 0 {
                     Style::Alt as u32
@@ -678,8 +674,8 @@ mod tests {
             let expected_primary = i.2;
             let expected_alt = i.3;
 
-            let actual_primary = Moon::new(i.0, &Style::Primary).unwrap();
-            let actual_alt = Moon::new(i.0, &Style::Alt).unwrap();
+            let actual_primary = Moon::new(i.0, Style::Primary).unwrap();
+            let actual_alt = Moon::new(i.0, Style::Alt).unwrap();
 
             assert_eq!(
                 expected_primary as u32,
@@ -705,24 +701,24 @@ mod tests {
     #[test]
     #[should_panic]
     fn lunar_number_less_than_0_primary() {
-        Moon::new(-1f64, &Style::Primary).unwrap();
+        Moon::new(-1f64, Style::Primary).unwrap();
     }
 
     #[test]
     #[should_panic]
     fn lunar_number_less_than_0_alt() {
-        Moon::new(-1f64, &Style::Alt).unwrap();
+        Moon::new(-1f64, Style::Alt).unwrap();
     }
 
     #[test]
     #[should_panic]
     fn lunar_number_greater_than_1_primary() {
-        Moon::new(2f64, &Style::Primary).unwrap();
+        Moon::new(2f64, Style::Primary).unwrap();
     }
 
     #[test]
     #[should_panic]
     fn lunar_number_greater_than_1_alt() {
-        Moon::new(2f64, &Style::Alt).unwrap();
+        Moon::new(2f64, Style::Alt).unwrap();
     }
 }
