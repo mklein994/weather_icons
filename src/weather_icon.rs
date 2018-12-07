@@ -272,7 +272,7 @@ impl Default for WeatherIcon {
 
 impl From<DripIcon> for WeatherIcon {
     fn from(icon: DripIcon) -> Self {
-        use WeatherIcon::*;
+        use crate::WeatherIcon::*;
         match icon {
             DripIcon::Cloud => Cloud,
             DripIcon::CloudDrizzle => Showers,

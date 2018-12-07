@@ -69,7 +69,7 @@ pub enum Condition {
 
 impl Condition {
     pub fn variant(&self, time: Time) -> Option<WeatherIcon> {
-        use Time::*;
+        use crate::Time::*;
         match time {
             Neutral => WEATHER_ICONS[*self as usize].0,
             Day => WEATHER_ICONS[*self as usize].1,
