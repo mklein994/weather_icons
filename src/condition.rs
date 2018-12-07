@@ -11,7 +11,7 @@ type IconSet = (
     Option<WeatherIcon>,
 );
 
-#[cfg_attr(rustfmt, rustfmt_skip)]
+#[rustfmt::skip]
 static WEATHER_ICONS: &'static [IconSet] = &[
     (Some(WeatherIcon::CloudyWindy),   Some(WeatherIcon::DayCloudyWindy),       Some(WeatherIcon::NightCloudyWindy),       Some(WeatherIcon::NightAltCloudyWindy)),
     (Some(WeatherIcon::Cloudy),        Some(WeatherIcon::DayCloudy),            Some(WeatherIcon::NightCloudy),            Some(WeatherIcon::NightAltCloudy)),
